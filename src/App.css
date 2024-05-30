@@ -14,14 +14,14 @@ a {
   color: inherit;
 }
 
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
 display: none;
-} */
+}
 
-/* body {
+body {
 -ms-overflow-style: none;
 scrollbar-width: none;
-} */
+}
 
 header {
   height: 110px;
@@ -36,18 +36,26 @@ header .site-logo {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+  padding: 5px 20px;
 }
 
-header a {
+header nav a {
   text-decoration: none;
   color: #4D4D4D;
   font-weight: 600;
   padding: 5px 20px;
 }
 
-header a:hover {
+
+header nav a:hover {
   color: #161616;
   text-decoration: underline;
+}
+
+a .active-link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
 }
 
 main {
@@ -319,4 +327,123 @@ i[class*='van-type-'] {
   color: #161616;
   text-decoration: underline;
   font-weight: 600;
+}
+
+.host-vans-container {
+  padding: 40px 20px;
+}
+
+.host-vans-container h1 {
+  color: #161616;
+  line-height: 34px;
+}
+
+.host-van-info-container {
+  padding: 40px 20px;
+}
+
+.host-van {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.host-van img {
+  width: 70px;
+  border-radius: 5px;
+}
+
+.host-van h3 {
+  margin-bottom: 0;
+}
+.host-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+a p:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.host-link p {
+  font-weight: 500;
+  line-height: 23px;
+  color: #201f1d;
+}
+
+.host-link .icon {
+  color: #858585;
+}
+
+.host-van-info img {
+  width: 161px;
+  border-radius: 5px;
+}
+
+.host-van-info  h2 {
+  font-size: 26.06px;
+  font-weight: 700;
+  line-height: 27.4px;
+  margin: 20px 0px 0px 0px;
+
+}
+
+.host-van-info p {
+  margin-top: 10px;
+}
+
+.host-van-info p span{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.host-van-page {
+  background-color: white;
+  padding: 20px 30px;
+}
+
+.host-van-page p span {
+  font-weight: bold;
+}
+
+.host-van-page .host-description {
+  line-height: 22px;
+}
+
+
+.host-van-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.host-nav-list {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.host-nav-list a {
+  text-decoration: none;
+  color: #4D4D4D;
+  font-weight: 500;
+}
+
+.price span {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.van-photo {
+  width: 104px;
 }
