@@ -12,7 +12,7 @@ const HostVansInfo = ({ }) => {
                 <p className="host-name"><span>Name:</span> {van.name}</p>
                 <p className="host-type"><span>Category:</span> {van.type}</p>
                 <p className="host-description"><span>Description:</span> {van.description}</p>
-                <p className="host-visibility"><span>Visibility:</span> Public</p>
+                <p className="host-visibility"><span>Visibility:</span> public</p>
             </div>
         ))}
     </div>

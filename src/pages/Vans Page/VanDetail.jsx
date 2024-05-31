@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { FaArrowLeft } from "react-icons/fa6";
 
 const VanDetail = () => {
     const params = useParams()
@@ -16,6 +17,10 @@ const VanDetail = () => {
     
   return (
     <div className="van-detail-container">
+        <Link to='..' relative='path' className='host-link'>
+            <FaArrowLeft className='icon'/>
+            <p>Back to all vans</p>
+        </Link>
         {van ? (
             <div className="van-detail">
                 <img src={van.imageUrl} />

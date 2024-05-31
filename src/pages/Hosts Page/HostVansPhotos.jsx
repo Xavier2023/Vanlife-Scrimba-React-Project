@@ -7,7 +7,7 @@ const HostVansPhotos = () => {
     <div>
         {hostVan.map((van) => (
             <img className='van-photo' src={van.imageUrl} key={van.id}/>
-        ))}
+        ))} 
     </div>
   )
 }

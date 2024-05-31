@@ -14,7 +14,7 @@ const HostVansList = () => {
 
   const hostVansElement = hostVans.map((hostVan) => (
     <Link 
-      to={`/host/vans/${hostVan.id}`} 
+      to={hostVan.id} 
       key={hostVan.id}
     >
       <div className='host-van'>

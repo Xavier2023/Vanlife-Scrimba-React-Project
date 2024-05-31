@@ -52,7 +52,7 @@ header nav a:hover {
   text-decoration: underline;
 }
 
-a .active-link {
+header .active-link {
   font-weight: bold;
   text-decoration: underline;
   color: #161616;
@@ -201,6 +201,16 @@ footer {
 .van-list-container button {
   margin-right: 20px;
   cursor: pointer;
+}
+
+.van-list-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.van-list-filter-buttons > a {
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .van-type {
