@@ -7,7 +7,7 @@ const VanDetail = () => {
     const { state } = useLocation()
 
     const location = state?.search || ""
-    console.log(location)
+    const type = state?.type || "all"
     
     const [van, setVan] = useState(null)
 
@@ -24,7 +24,7 @@ const VanDetail = () => {
     <div className="van-detail-container">
         <Link to={`..?${location}`} relative='path' className='host-link'>
             <FaArrowLeft className='icon'/>
-            <p>Back to all vans</p>
+            <p>Back to {type} vans</p>
         </Link>
         {van ? (
             <div className="van-detail">
