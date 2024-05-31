@@ -41,7 +41,7 @@ const Vans = () => {
     const displayVans = typeFilter? vans.filter(van => van.type === typeFilter ) : vans
 
     const vanElements = displayVans.map((van) => (
-        <Link key={van.id} to={van.id}>
+        <Link key={van.id} to={van.id} state={{ search: searchParams.toString() }}>
             <div className="van-tile">
             <img src={van.imageUrl} />
             <div className="van-info">

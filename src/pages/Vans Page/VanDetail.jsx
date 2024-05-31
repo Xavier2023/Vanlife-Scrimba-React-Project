@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useLocation } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa6";
 
 const VanDetail = () => {
     const params = useParams()
+    const { state } = useLocation()
+
+    const location = state?.search || ""
+    console.log(location)
+    
     const [van, setVan] = useState(null)
 
     useEffect(() => {
@@ -17,7 +22,7 @@ const VanDetail = () => {
     
   return (
     <div className="van-detail-container">
-        <Link to='..' relative='path' className='host-link'>
+        <Link to={`..?${location}`} relative='path' className='host-link'>
             <FaArrowLeft className='icon'/>
             <p>Back to all vans</p>
         </Link>
