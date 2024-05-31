@@ -36,14 +36,14 @@ header .site-logo {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
-  padding: 5px 20px;
+  padding: 5px 15px;
 }
 
 header nav a {
   text-decoration: none;
   color: #4D4D4D;
   font-weight: 600;
-  padding: 5px 20px;
+  padding: 5px 15px;
 }
 
 
@@ -330,7 +330,7 @@ i[class*='van-type-'] {
   text-decoration: none;
   color: #4D4D4D;
   font-weight: 500;
-  padding: 5px 20px;
+  padding: 5px 15px;
 }
 
 .host-nav a:hover {
