@@ -4,6 +4,9 @@ import { FaCircleUser } from "react-icons/fa6";
 
 const Header = () => {
 
+  function fakeLogOut() {
+    localStorage.removeItem("loggedin")
+}
   
   return (
     <>
@@ -19,6 +22,7 @@ const Header = () => {
               className="login-icon"
           />
         </NavLink>
+        {/* <button onClick={fakeLogOut}>X</button> */}
       </header>
     </>
   )

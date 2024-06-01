@@ -1,12 +1,34 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from "react-router-dom"
+import { loginUser } from '../../api';
+import { IoWarningOutline } from "react-icons/io5";
 
 const Login = () => {
-    const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
+    const [loginFormData, setLoginFormData] = useState({ email: "", password: "" })
+    const [status, setStatus] = useState("idle")
+    const [error, setError] = useState(null)
+
+    const { state } = useLocation()
+    const navigate = useNavigate()
+    const from  = state?.from || '/host'
+
+    const warning = state?.message || ''
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(loginFormData)
+        setStatus('submitting')
+        loginUser(loginFormData)
+            .then(data => {
+                setError(null)
+                localStorage.setItem("loggedin", true)
+                navigate(from, { replace: true })
+
+            })
+            .catch(err => {
+                setError(err)
+            })
+            .finally(() => setStatus('idile'))
+        setError(null)
     }
 
     function handleChange(e) {
@@ -16,8 +38,24 @@ const Login = () => {
             [name]: value
         }))
     }
+
+
+
   return (
     <div className="login-container">
+        {warning && (
+            <div className='login-first'>
+                <IoWarningOutline className='warning' />
+                <p>{warning}</p>
+            </div>
+        )}
+
+        {error?.message && (
+            <div className='login-first'>
+                <p>{error.message}</p>
+            </div>
+        )}
+
         <h1>Sign in to your account</h1>
         <form onSubmit={handleSubmit} className="login-form">
             <input
@@ -34,7 +72,12 @@ const Login = () => {
                 placeholder="Password"
                 value={loginFormData.password}
             />
-            <button className='link-button'>Log in</button>
+            <button 
+                disabled={status === 'submitting' ? true : false} 
+                className='link-button'
+            >
+                {status === 'submitting'? 'Logging in' : 'Log in'}
+            </button>
         </form>
      </div>
   )

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa6";
+import { getVans } from '../../../api'
+import Spinner from '../../assets/images/spinner.gif'
 
 const VanDetail = () => {
     const params = useParams()
@@ -10,15 +12,37 @@ const VanDetail = () => {
     const type = state?.type || "all"
     
     const [van, setVan] = useState(null)
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
 
     useEffect(() => {
-        const getVan = async () => {
-            const res = await fetch(`/api/vans/${params.id}`)
-            const data = await res.json()
-            setVan(data.vans)
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans(params.id)
+                setVan(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
-        getVan()
+        loadVans()
     }, [params.id])
+
+    if (loading) {
+        return (
+            <div className='loading'>
+                <img src={Spinner} alt="" />
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <h1>There was an error {error}</h1>
+        )
+    }
     
   return (
     <div className="van-detail-container">

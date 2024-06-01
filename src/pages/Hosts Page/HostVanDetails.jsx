@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useParams,Outlet } from 'react-router-dom'
+import { getHostVans } from '../../../api'
 import { FaArrowLeft } from "react-icons/fa6";
+import Spinner from '../../assets/images/spinner.gif'
 
 const HostVanDetails = () => {
 
@@ -13,13 +15,23 @@ const HostVanDetails = () => {
   const params = useParams() 
 
   const [hostVan, setHostVan] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = React.useState(null)
 
   useEffect(() => {
-    fetch(`/api/host/vans/${params.id}`)
-      .then(res => res.json())
-      .then(data => {
-        setHostVan(data.vans)
-      })
+    async function loadVans() {
+      setLoading(true)
+      try {
+          const data = await getHostVans(params.id)
+          setHostVan(data)
+      } catch (err) {
+          setError(err)
+      } finally {
+          setLoading(false)
+      }
+  }
+
+  loadVans()
   }, [])
 
 
@@ -42,6 +54,18 @@ const HostVanDetails = () => {
       <Outlet context={[hostVan]} />
     </div>
   ))
+
+  if (loading) {
+    return (
+        <div className='loading'>
+            <img src={Spinner} alt="" />
+        </div>
+    )
+}
+
+  if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
 
 
   return (
