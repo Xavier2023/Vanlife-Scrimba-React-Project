@@ -6,6 +6,8 @@ import Spinner from '../../assets/images/spinner.gif'
 const Vans = () => {
     const [vans, setVans] = useState([])
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    
 
     const [searchParams, setSearchParams] = useSearchParams()
     
@@ -14,9 +16,15 @@ const Vans = () => {
     useEffect(() => {
         const loadVans = async () => {
             setLoading(true)
-            const data = await getVans()
-            setVans(data)
-            setLoading(false)
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch(err) {
+                setError(err.message)
+            } finally {
+                setLoading(false) 
+            }
+            
         }
         loadVans()
     }, [])
@@ -31,16 +39,7 @@ const Vans = () => {
     //     return `?${sp.toString()}`
     //   }
 
-    const handleFilter = (key, value) => {
-        setSearchParams(prevParams => {
-            if (value === null) {
-                prevParams.delete(key)
-            } else {
-                prevParams.set(key, value)
-            }
-            return prevParams
-        })
-    }
+    
       
     const displayVans = typeFilter? vans.filter(van => van.type === typeFilter ) : vans
 
@@ -64,11 +63,28 @@ const Vans = () => {
         </Link>
     ))
 
+    const handleFilter = (key, value) => {
+        setSearchParams(prevParams => {
+            if (value === null) {
+                prevParams.delete(key)
+            } else {
+                prevParams.set(key, value)
+            }
+            return prevParams
+        })
+    }
+
     if (loading) {
         return (
             <div className='loading'>
                 <img src={Spinner} alt="" />
             </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <h1>There was an error {error}</h1>
         )
     }
   return (

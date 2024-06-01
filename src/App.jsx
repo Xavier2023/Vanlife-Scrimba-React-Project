@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Vans from './pages/Vans Page/Vans'
 import VanDetail from './pages/Vans Page/VanDetail'
+import Login from './pages/Login'
 import HostLayout from './components/HostLayout'
 import Dashboard from './pages/Hosts Page/Dashboard'
 import Income from './pages/Hosts Page/Income'
@@ -31,6 +32,10 @@ function App() {
           <Route path='about' element={<About />} />
           <Route path='vans' element={<Vans />} />
           <Route path='vans/:id' element={<VanDetail/>} />
+          <Route
+            path="login"
+            element={<Login />}
+          />
 
           <Route path='host' element={<HostLayout/>}>
             <Route index element={<Dashboard/>} />
