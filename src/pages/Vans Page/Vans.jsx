@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { getVans } from '../../../api'
 import { Link, NavLink, useSearchParams } from 'react-router-dom'
+import Spinner from '../../assets/images/spinner.gif'
 
 const Vans = () => {
     const [vans, setVans] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
     
     const typeFilter = searchParams.get("type")
 
     useEffect(() => {
-        const getVans = async () => {
-            const res = await fetch("/api/vans")
-            const data = await res.json()
-            setVans(data.vans)
+        const loadVans = async () => {
+            setLoading(true)
+            const data = await getVans()
+            setVans(data)
+            setLoading(false)
         }
-        getVans()
+        loadVans()
     }, [])
 
     // function genNewSearchParamString(key, value) {
@@ -41,7 +45,14 @@ const Vans = () => {
     const displayVans = typeFilter? vans.filter(van => van.type === typeFilter ) : vans
 
     const vanElements = displayVans.map((van) => (
-        <Link key={van.id} to={van.id} state={{ search: searchParams.toString(), type: typeFilter }}>
+        <Link 
+            key={van.id} 
+            to={van.id} 
+            state={{ 
+                search: searchParams.toString(), 
+                type: typeFilter 
+            }}
+        >
             <div className="van-tile">
             <img src={van.imageUrl} />
             <div className="van-info">
@@ -52,6 +63,14 @@ const Vans = () => {
         </div>
         </Link>
     ))
+
+    if (loading) {
+        return (
+            <div className='loading'>
+                <img src={Spinner} alt="" />
+            </div>
+        )
+    }
   return (
     <div className="van-list-container">
         <h1>Explore our van options</h1>
