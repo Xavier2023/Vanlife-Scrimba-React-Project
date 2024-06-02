@@ -18,7 +18,7 @@ const Dashboard = () => {
     function renderVanElements(vans) {
       const hostVansEls = vans.map((van) => (
         <div className="host-van-single" key={van.id}>
-          <img classNam src={van.imageUrl} alt={`Photo of ${van.name}`} />
+          <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
           <div className="dashboard-info">
               <h3>{van.name}</h3>
               <p>${van.price}/day</p>

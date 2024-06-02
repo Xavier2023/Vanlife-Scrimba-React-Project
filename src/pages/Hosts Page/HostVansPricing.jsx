@@ -5,9 +5,7 @@ const HostVansPricing = () => {
     const [hostVan] = useOutletContext()
   return (
     <div>
-        {hostVan.map((van) => (
-            <p className='price' key={van.id}><span>${van.price}.00</span>/day</p>
-        ))}
+      <p className='price' key={hostVan.id}><span>${hostVan.price}.00</span>/day</p>
     </div>
   )
 }

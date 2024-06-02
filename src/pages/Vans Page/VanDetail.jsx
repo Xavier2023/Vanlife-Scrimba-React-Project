@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa6";
-import { getVans } from '../../../api'
+import { getVan } from '../../../api'
 import Spinner from '../../assets/images/spinner.gif'
 
 const VanDetail = () => {
@@ -19,7 +19,7 @@ const VanDetail = () => {
         async function loadVans() {
             setLoading(true)
             try {
-                const data = await getVans(params.id)
+                const data = await getVan(params.id)
                 setVan(data)
             } catch (err) {
                 setError(err)

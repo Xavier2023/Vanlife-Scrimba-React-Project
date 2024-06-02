@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useParams,Outlet } from 'react-router-dom'
-import { getHostVans } from '../../../api'
+import { getVan } from '../../../api'
 import { FaArrowLeft } from "react-icons/fa6";
 import Spinner from '../../assets/images/spinner.gif'
 
@@ -22,7 +22,7 @@ const HostVanDetails = () => {
     async function loadVans() {
       setLoading(true)
       try {
-          const data = await getHostVans(params.id)
+          const data = await getVan(params.id)
           setHostVan(data)
       } catch (err) {
           setError(err)
@@ -36,14 +36,14 @@ const HostVanDetails = () => {
 
 
 
-  const hostVanElement = hostVan.map((van) => (
-    <div key={van.id} className='host-van-page'>
+  const hostVanElement =  (
+    <div key={hostVan.id} className='host-van-page'>
       <div className='host-van-info'>
-        <img src={van.imageUrl} />
+        <img src={hostVan.imageUrl} />
         <div className='host-van-detail'>
-          <i className={`van-type ${van.type} selected`}>{van.type}</i>
-          <h2>{van.name}</h2>
-          <p><span>${van.price}</span>/day</p>
+          <i className={`van-type ${hostVan.type} selected`}>{hostVan.type}</i>
+          <h2>{hostVan.name}</h2>
+          <p><span>${hostVan.price}</span>/day</p>
         </div>
       </div>
       <nav className='host-nav-list'>
@@ -53,7 +53,7 @@ const HostVanDetails = () => {
       </nav>
       <Outlet context={[hostVan]} />
     </div>
-  ))
+  )
 
   if (loading) {
     return (

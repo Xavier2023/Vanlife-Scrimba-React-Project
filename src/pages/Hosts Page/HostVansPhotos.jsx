@@ -5,9 +5,7 @@ const HostVansPhotos = () => {
     const [hostVan] = useOutletContext()
   return (
     <div>
-        {hostVan.map((van) => (
-            <img className='van-photo' src={van.imageUrl} key={van.id}/>
-        ))} 
+      <img className='van-photo' src={hostVan.imageUrl} key={hostVan.id}/>
     </div>
   )
 }
